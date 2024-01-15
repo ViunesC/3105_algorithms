@@ -32,6 +32,7 @@ namespace stableMatching {
 
             purpose(nextMan);
 
+            // Check if there is anyone who haven't been paired
             for (int i=0;i<N;++i) {
                 if (candidate_currMatch[i] == -1) {
                     isManAvailable = true;
@@ -74,7 +75,7 @@ namespace stableMatching {
             }
         }
 
-        // check if candidate's next purposed women have been matched or not
+        // check if candidate's next proposed women have been matched or not
         if (candidate_currMatch[nextProposal + N] == -1) { // if not matched
             candidate_currMatch[nextProposal + N] = candidate;
             candidate_currMatch[candidate] = nextProposal;
@@ -82,10 +83,10 @@ namespace stableMatching {
             int currPartner = candidate_currMatch[nextProposal + N];
 
             if (woman_pref[nextProposal][currPartner] < woman_pref[nextProposal][candidate]) {
-                // if current partner is more attractive, candidate got rejected
+                // if current partner is more attractive, reject the candidate
                 man_NextPropose[candidate] += 1;
             } else {
-                // else woman swap her partner, her ex-partner got rejected and become free
+                // else woman swap her partner, her ex-partner got rejected and became free
                 candidate_currMatch[nextProposal + N] = candidate;
                 candidate_currMatch[candidate] = nextProposal;
 

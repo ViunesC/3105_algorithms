@@ -1,0 +1,17 @@
+N = 3
+man_pref = 
+{
+0 2 1 0
+1 2 0 1
+2 2 0 1
+}
+woman_pref = 
+{
+0 2 0 1
+1 1 0 2
+2 2 1 0
+}
+result =
+-> man 1 married with woman 1
+-> man 2 married with woman 2
+-> man 3 married with woman 3
