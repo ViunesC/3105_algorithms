@@ -1,9 +1,10 @@
 #include <iostream>
 #include "stableMatching.h"
+#include "Graph.h"
 
 int main() {
     // Gale-shapley algorithm
-    int N = 3;
+    /*int N = 3;
     int **mp = new int*[N];
     for (int i=0;i<N;++i) {
         mp[i] = new int[N];
@@ -42,7 +43,30 @@ int main() {
         delete[] wp[i];
     }
     delete[] mp;
-    delete[] wp;
+    delete[] wp;*/
+
+    Graph::Graph g;
+
+    g.addNode({1});
+    g.addNode({2});
+    g.addNode({3});
+    g.addNode({4});
+    g.addNode({5});
+    g.addNode({6});
+    g.addNode({7});
+    g.addNode({8});
+
+    g.addEdges(1,3,"2 4 5");
+    g.addEdges(2,3,"1 3 4");
+    g.addEdges(3,1,"2");
+    g.addEdges(4,3,"1 2 6");
+    g.addEdges(5,2,"1 7");
+    g.addEdges(6,2,"4 7");
+    g.addEdges(7,2,"5 8");
+    g.addEdges(8,1,"7");
+
+    g.bfs();
+    //g.listAll();
 
     return 0;
 }
