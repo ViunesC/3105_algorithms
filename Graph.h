@@ -23,6 +23,7 @@ namespace Graph {
         int capacity;
         Node *node_list;
         void extend_list();
+        void dfsUtil(Node *v, std::string *output, std::set<int> *explored);
     public:
         Graph();
         ~Graph();

@@ -40,6 +40,7 @@ int main() {
 
     // bfs and dfs
     /*Graph::Graph g;
+    Graph::Graph g1;
 
     g.addNode({1});
     g.addNode({2});
@@ -59,8 +60,28 @@ int main() {
     g.addEdges(7,2,"5 8");
     g.addEdges(8,1,"7");
 
-    g.bfs();*/
+    g1.addNode({1});
+    g1.addNode({2});
+    g1.addNode({3});
+    g1.addNode({4});
+    g1.addNode({5});
+    g1.addNode({6});
+    g1.addNode({7});
+    g1.addNode({8});
+
+    g1.addEdges(1,2,"2 3");
+    g1.addEdges(2,2,"1 3");
+    g1.addEdges(3,4,"1 2 5 7");
+    g1.addEdges(4,2,"6 8");
+    g1.addEdges(5,1,"3");
+    g1.addEdges(6,2,"4 7");
+    g1.addEdges(7,3,"3 6 8");
+    g1.addEdges(8,2,"4 7");
+
+
+    g.bfs();
     //g.listAll();
+    g1.dfs();*/
 
 
 

@@ -55,7 +55,15 @@ namespace Graph {
     }
 
     void Graph::dfs() {
+        std::set<int> explored;
+        std::string result;
+        if (numNodes == 0)
+            return;
+        else {
+            dfsUtil(&node_list[0], &result, &explored);
+        }
 
+        std::cout << result << std::endl;
     }
 
     bool Graph::addNode(Node node) {
@@ -126,6 +134,23 @@ namespace Graph {
                 std::cout << std::to_string(node_list[i].adjacent_nodes[j]->value) + " ";
             }
             std::cout << std::endl;
+        }
+    }
+
+    void Graph::dfsUtil(Node *v, std::string *output, std::set<int> *explored) {
+        /*// if All the nodes have been explored
+        if (explored->size() == numNodes)
+            return *output;*/
+
+        // if current node have not been explored
+        if (explored->count(v->value) == 0) {
+            explored->insert(v->value);
+            *output += std::to_string(v->value) + " ";
+
+            // run dfs on all of its adjacent node recursively
+            for (int i=0;i<v->numAdjacent;++i) {
+                dfsUtil(v->adjacent_nodes[i], output, explored);
+            }
         }
     }
 
