@@ -23,27 +23,27 @@ namespace Graph {
             return;
 
         std::set<int> explored;
-        std::queue<Node> toBeExplored;
+        std::queue<Node*> toBeExplored;
         std::string output;
         Node *current;
 
         // start with node 0 by default
-        toBeExplored.push(node_list[0]);
+        toBeExplored.push(&node_list[0]);
         while (explored.size() != numNodes) {
             // std::cout << output << std::endl;
-            current = &toBeExplored.front();
-            std::cout << "current:" << std::to_string(current->value) << std::endl;
+            current = toBeExplored.front();
+            // std::cout << "current:" << std::to_string(current->value) << std::endl;
 
             // if the node does not been explored
             if (explored.count(current->value) == 0) {
                 // add current node to explored set and string output
                 explored.insert(current->value);
                 output += std::to_string(current->value) + " ";
-                std::cout << "ADJ:" << current->numAdjacent << std::endl;
+                // std::cout << "ADJ:" << current->numAdjacent << std::endl;
 
                 // add its child to toBeExplored
                 for (int i=0;i<current->numAdjacent;++i) {
-                    std::cout << "add " << current->adjacent_nodes[i].value << " into TBE" << std::endl;
+                    // std::cout << "add " << current->adjacent_nodes[i]->value << " into TBE" << std::endl;
                     toBeExplored.push(current->adjacent_nodes[i]);
                 }
             }
@@ -84,6 +84,9 @@ namespace Graph {
         node_list = new_list;
 
         for (int j=0;j<numNodes;++j) {
+            for (int r=0;r<temp[j].numAdjacent;++r) {
+                delete temp[j].adjacent_nodes[r];
+            }
             delete[] temp[j].adjacent_nodes;
         }
         delete[] temp;
@@ -91,12 +94,12 @@ namespace Graph {
 
     void Graph::addEdges(int node, int numAdj, std::string list) {
         int count = -1;
-        Node *nodes;
+        Node **nodes;
         char c;
         for (int i=0;i<numNodes;++i) {
             if (node_list[i].value == node) {
                 node_list[i].numAdjacent = numAdj;
-                nodes = new Node[numAdj];
+                nodes = new Node*[numAdj];
 
                 // Insert adjacent list
                 for (int j=0;j<list.length();++j) {
@@ -104,11 +107,7 @@ namespace Graph {
                     if (c != ' ') {
                         for (int k=0;k<numNodes;++k) {
                             if (node_list[k].value == (c-'0')) {
-                                // Problem: pass-by-value, some nodes may be initialized earlier than its adjacent node
-                                // during its initialization it used unfinished version of its adjacent node
-                                // thus the numAdjacent and adjacent_nodes are not properly update
-                                // TODO: fix using pass-by-reference
-                                nodes[++count] = node_list[k];
+                                nodes[++count] = &node_list[k];
                                 break;
                             }
                         }
@@ -124,7 +123,7 @@ namespace Graph {
         for (int i=0;i<numNodes;++i) {
             std::cout << std::to_string(node_list[i].value) + ": ";
             for (int j=0;j<node_list[i].numAdjacent;++j) {
-                std::cout << std::to_string(node_list[i].adjacent_nodes[j].value) + " ";
+                std::cout << std::to_string(node_list[i].adjacent_nodes[j]->value) + " ";
             }
             std::cout << std::endl;
         }

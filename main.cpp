@@ -36,16 +36,10 @@ int main() {
     wp[2][2] = 0;
 
     stableMatching::stableMatching matching(N, mp, wp);
-    matching.gale_shapley();
+    matching.gale_shapley();*/
 
-    for (int i=0;i<N;++i) {
-        delete[] mp[i];
-        delete[] wp[i];
-    }
-    delete[] mp;
-    delete[] wp;*/
-
-    Graph::Graph g;
+    // bfs and dfs
+    /*Graph::Graph g;
 
     g.addNode({1});
     g.addNode({2});
@@ -65,8 +59,10 @@ int main() {
     g.addEdges(7,2,"5 8");
     g.addEdges(8,1,"7");
 
-    g.bfs();
+    g.bfs();*/
     //g.listAll();
+
+
 
     return 0;
 }

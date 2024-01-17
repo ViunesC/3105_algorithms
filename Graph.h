@@ -14,7 +14,7 @@ namespace Graph {
     struct Node {
         int value;
         int numAdjacent;
-        Node *adjacent_nodes;
+        Node **adjacent_nodes;
     };
 
     class Graph {
