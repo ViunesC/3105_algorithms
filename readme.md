@@ -7,5 +7,5 @@ For every algorithm, there is a piece of code for testing. I've comment-out all 
 
 ### List of problems and algorithm (more to come):
 1. Stable Matching - Gale shapley algorithm
-2. Graph - breadth-first-search (BFS) and depth-first-search (DFS)
+2. Graph - breadth-first-search (BFS) and depth-first-search (DFS), test bipartiteness
 3. Directed Graph - test connectivity and find topological order of graph
