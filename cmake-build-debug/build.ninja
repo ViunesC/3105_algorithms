@@ -67,6 +67,12 @@ build CMakeFiles/3105_algorithms.dir/Graph.cpp.obj: CXX_COMPILER__3105_algorithm
   OBJECT_DIR = CMakeFiles\3105_algorithms.dir
   OBJECT_FILE_DIR = CMakeFiles\3105_algorithms.dir
 
+build CMakeFiles/3105_algorithms.dir/DirectedGraph.cpp.obj: CXX_COMPILER__3105_algorithms_unscanned_Debug D$:/CS$ projects/CPP/Learning/3105_algorithms/DirectedGraph.cpp || cmake_object_order_depends_target_3105_algorithms
+  DEP_FILE = CMakeFiles\3105_algorithms.dir\DirectedGraph.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\3105_algorithms.dir
+  OBJECT_FILE_DIR = CMakeFiles\3105_algorithms.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target 3105_algorithms
@@ -75,7 +81,7 @@ build CMakeFiles/3105_algorithms.dir/Graph.cpp.obj: CXX_COMPILER__3105_algorithm
 #############################################
 # Link the executable 3105_algorithms.exe
 
-build 3105_algorithms.exe: CXX_EXECUTABLE_LINKER__3105_algorithms_Debug CMakeFiles/3105_algorithms.dir/main.cpp.obj CMakeFiles/3105_algorithms.dir/stableMatching.cpp.obj CMakeFiles/3105_algorithms.dir/Graph.cpp.obj
+build 3105_algorithms.exe: CXX_EXECUTABLE_LINKER__3105_algorithms_Debug CMakeFiles/3105_algorithms.dir/main.cpp.obj CMakeFiles/3105_algorithms.dir/stableMatching.cpp.obj CMakeFiles/3105_algorithms.dir/Graph.cpp.obj CMakeFiles/3105_algorithms.dir/DirectedGraph.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\3105_algorithms.dir

@@ -18,7 +18,7 @@ namespace Graph {
     };
 
     class Graph {
-    private:
+    protected:
         int numNodes;
         int capacity;
         Node *node_list;

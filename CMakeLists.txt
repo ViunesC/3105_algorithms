@@ -7,4 +7,6 @@ add_executable(3105_algorithms main.cpp
         stableMatching.cpp
         stableMatching.h
         Graph.cpp
-        Graph.h)
+        Graph.h
+        DirectedGraph.cpp
+        DirectedGraph.h)
