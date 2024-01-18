@@ -41,6 +41,7 @@ int main() {
     // bfs and dfs
     /*Graph::Graph g;
     Graph::Graph g1;
+    Graph::Graph g2;
 
     g.addNode({1});
     g.addNode({2});
@@ -78,12 +79,24 @@ int main() {
     g1.addEdges(7,3,"3 6 8");
     g1.addEdges(8,2,"4 7");
 
+    g2.addNode({1});
+    g2.addNode({2});
+    g2.addNode({3});
+    g2.addNode({4});
+    g2.addNode({5});
+    g2.addNode({6});
+    g2.addEdges(1,2,"2 4");
+    g2.addEdges(2,3,"1 3 5");
+    g2.addEdges(3,4,"2 4 5 6");
+    g2.addEdges(4,2,"1 3");
+    g2.addEdges(5,3,"2 3 6");
+    g2.addEdges(6,2,"3 5");
 
-    g.bfs();
+
+    //g.bfs();
     //g.listAll();
-    g1.dfs();*/
-
-
+    //g1.dfs();
+    //g2.bipartite();*/
 
     return 0;
 }

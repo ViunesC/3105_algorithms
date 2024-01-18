@@ -154,4 +154,46 @@ namespace Graph {
         }
     }
 
+    void Graph::bipartite() {
+        if (numNodes == 0)
+            return;
+        std::set<int> explored;
+        bool result = bipartiteUtil(&node_list[0], &explored);
+        if (result)
+            std::cout << "Graph is bipartite" << std::endl;
+        else
+            std::cout << "Graph is NOT bipartite" << std::endl;
+    }
+
+    bool Graph::bipartiteUtil(Node *v, std::set<int> *explored) {
+        if (explored->count(v->value) != 0) {
+            return true;
+        }
+
+        explored->insert(v->value);
+        for (int i=0;i<v->numAdjacent;++i) {
+            for (int j=i;j<v->numAdjacent;++j) {
+                if (isConnected(v->adjacent_nodes[i], v->adjacent_nodes[j]))
+                    return false;
+            }
+        }
+
+        for (int k=0;k<v->numAdjacent;++k) {
+            if(!bipartiteUtil(v->adjacent_nodes[k], explored)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    bool Graph::isConnected(Node *u, Node *v) {
+        for (int i=0;i<u->numAdjacent;++i) {
+            if (u->adjacent_nodes[i]->value == v->value) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 } // Graph

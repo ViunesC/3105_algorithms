@@ -24,11 +24,14 @@ namespace Graph {
         Node *node_list;
         void extend_list();
         void dfsUtil(Node *v, std::string *output, std::set<int> *explored);
+        bool bipartiteUtil(Node *v, std::set<int> *explored);
+        static bool isConnected(Node *u, Node *v);
     public:
         Graph();
         ~Graph();
         void bfs();
         void dfs();
+        void bipartite();
         bool addNode(Node node);
         void addEdges(int number, int numAdj, std::string list);
         void listAll();
