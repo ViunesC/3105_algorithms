@@ -11,7 +11,7 @@ namespace DirectedGraph {
 
 class DirectedGraph : public Graph::Graph {
 private:
-    void reverse();
+    DirectedGraph reverse();
 public:
     DirectedGraph();
     ~DirectedGraph();

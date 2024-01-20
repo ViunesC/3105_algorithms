@@ -5,7 +5,8 @@
 #include "DirectedGraph.h"
 
 namespace DirectedGraph {
-    void DirectedGraph::reverse() {
+    DirectedGraph DirectedGraph::reverse() {
+
     }
 
     DirectedGraph::DirectedGraph() = default;
@@ -13,7 +14,6 @@ namespace DirectedGraph {
     DirectedGraph::~DirectedGraph() = default;
 
     void DirectedGraph::connectivity() {
-
     }
 
     void DirectedGraph::topoSort() {

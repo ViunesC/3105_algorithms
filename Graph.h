@@ -10,32 +10,33 @@
 #include <set>
 #include <queue>
 
-namespace Graph {
-    struct Node {
-        int value;
-        int numAdjacent;
-        Node **adjacent_nodes;
-    };
+struct Node {
+    int value;
+    int numAdjacent;
+    Node **adjacent_nodes;
+};
 
-    class Graph {
-    protected:
-        int numNodes;
-        int capacity;
-        Node *node_list;
-        void extend_list();
-        void dfsUtil(Node *v, std::string *output, std::set<int> *explored);
-        bool bipartiteUtil(Node *v, std::set<int> *explored);
-        static bool isConnected(Node *u, Node *v);
-    public:
-        Graph();
-        ~Graph();
-        void bfs();
-        void dfs();
-        void bipartite();
-        bool addNode(Node node);
-        void addEdges(int number, int numAdj, std::string list);
-        void listAll();
-    };
+namespace Graph {
+
+class Graph {
+protected:
+    int numNodes;
+    int capacity;
+    Node *node_list;
+    void extend_list();
+    void dfsUtil(Node *v, std::string *output, std::set<int> *explored);
+    bool bipartiteUtil(Node *v, std::set<int> *explored);
+    static bool isConnected(Node *u, Node *v);
+public:
+    Graph();
+    ~Graph();
+    void bfs();
+    void dfs();
+    void bipartite();
+    bool addNode(Node node);
+    void addEdges(int number, int numAdj, std::string list);
+    void listAll();
+};
 
 } // Graph
 
