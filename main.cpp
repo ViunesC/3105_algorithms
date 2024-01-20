@@ -1,6 +1,7 @@
 #include <iostream>
 #include "stableMatching.h"
 #include "Graph.h"
+#include "DirectedGraph.h"
 
 int main() {
     // Gale-shapley algorithm
@@ -97,6 +98,25 @@ int main() {
     //g.listAll();
     //g1.dfs();
     //g2.bipartite();*/
+
+    DirectedGraph::DirectedGraph g2;
+    g2.addNode(0);
+    g2.addNode(1);
+    g2.addNode(2);
+    g2.addNode(3);
+    g2.addNode(4);
+    g2.addNode(5);
+    g2.addEdge(5,0);
+    g2.addEdge(5,2);
+    g2.addEdge(2,3);
+    g2.addEdge(3,1);
+    g2.addEdge(4,0);
+    g2.addEdge(4,1);
+
+    //g2.listAll();
+    g2.connectivity();
+    //g2.topoSort();
+
 
     return 0;
 }
