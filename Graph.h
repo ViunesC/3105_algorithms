@@ -30,7 +30,7 @@ protected:
 public:
     Graph();
     ~Graph();
-    void bfs();
+    int bfs();
     void dfs();
     void bipartite();
     bool addNode(Node node);

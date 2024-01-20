@@ -18,32 +18,34 @@ namespace Graph {
         delete[] node_list;
     }
 
-    void Graph::bfs() {
+    int Graph::bfs() {
         if (numNodes == 0)
-            return;
+            return -1;
 
         std::set<int> explored;
         std::queue<Node*> toBeExplored;
         std::string output;
         Node *current;
+        int count = 0;
 
         // start with node 0 by default
         toBeExplored.push(&node_list[0]);
         while (explored.size() != numNodes) {
             // std::cout << output << std::endl;
             current = toBeExplored.front();
-            // std::cout << "current:" << std::to_string(current->value) << std::endl;
+            std::cout << "current:" << std::to_string(current->value) << std::endl;
 
             // if the node does not been explored
             if (explored.count(current->value) == 0) {
                 // add current node to explored set and string output
                 explored.insert(current->value);
                 output += std::to_string(current->value) + " ";
-                // std::cout << "ADJ:" << current->numAdjacent << std::endl;
+                ++count;
+                std::cout << "ADJ:" << current->numAdjacent << std::endl;
 
                 // add its child to toBeExplored
                 for (int i=0;i<current->numAdjacent;++i) {
-                    // std::cout << "add " << current->adjacent_nodes[i]->value << " into TBE" << std::endl;
+                    std::cout << "add " << current->adjacent_nodes[i]->value << " into TBE" << std::endl;
                     toBeExplored.push(current->adjacent_nodes[i]);
                 }
             }
@@ -52,6 +54,7 @@ namespace Graph {
         }
 
         std::cout << output << std::endl;
+        return count;
     }
 
     void Graph::dfs() {
