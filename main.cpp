@@ -2,6 +2,7 @@
 #include "stableMatching.h"
 #include "Graph.h"
 #include "DirectedGraph.h"
+#include "Greedy.h"
 
 int main() {
     // Gale-shapley algorithm
@@ -99,7 +100,8 @@ int main() {
     //g1.dfs();
     //g2.bipartite();*/
 
-    DirectedGraph::DirectedGraph g2;
+    // Connectivity and Topological sort
+    /*DirectedGraph::DirectedGraph g2;
     g2.addNode(0);
     g2.addNode(1);
     g2.addNode(2);
@@ -115,8 +117,33 @@ int main() {
 
     //g2.listAll();
     g2.connectivity();
-    //g2.topoSort();
+    //g2.topoSort();*/
 
+    Greedy::Greedy gdy;
+    Interval i1("A", 0, 6);
+    Interval i2("B", 2, 6);
+    Interval i3("C", 5, 3);
+    Interval i4("D", 6, 4);
+    Interval i5("E", 8, 3);
+    Interval i6("F", 9, 4);
+    Interval i7("G", 10, 4);
+    Interval i8("H", 13, 3);
+    Interval i9("I", 14, 2);
+
+    Interval* list = new Interval[9];
+    list[0] = i1;
+    list[1] = i2;
+    list[2] = i3;
+    list[3] = i4;
+    list[4] = i5;
+    list[5] = i6;
+    list[6] = i7;
+    list[7] = i8;
+    list[8] = i9;
+
+    gdy.find_maxSubset(list, 9);
+
+    delete[] list;
 
     return 0;
 }
