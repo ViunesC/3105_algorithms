@@ -3,6 +3,41 @@
 #include "Graph.h"
 #include "DirectedGraph.h"
 #include "Greedy.h"
+#include <fstream>
+
+
+Interval* createInput(std::string fileName, int* number) {
+    std::ifstream file(fileName);
+    std::string text, name, start;
+    int n = 0,c = 0;
+    size_t pos;
+
+    // read N
+    while (std::getline(file,text)) {
+        n++;
+    }
+    file.close();
+    std::ifstream file1(fileName);
+
+    auto* nlist = new Interval[n];
+    while (std::getline(file1,text)) {
+        name = text.substr(0, 1);
+        text.erase(0, 2);
+
+        pos = text.find(' ');
+        start = text.substr(0, pos);
+        text.erase(0, pos+1);
+
+        Interval i(name, std::stoi(start), std::stoi(text));
+        nlist[c] = i;
+        ++c;
+    }
+
+    *number = n;
+    file1.close();
+
+    return nlist;
+}
 
 int main() {
     // Gale-shapley algorithm
@@ -119,31 +154,16 @@ int main() {
     g2.connectivity();
     //g2.topoSort();*/
 
-    Greedy::Greedy gdy;
-    Interval i1("A", 0, 6);
-    Interval i2("B", 2, 6);
-    Interval i3("C", 5, 3);
-    Interval i4("D", 6, 4);
-    Interval i5("E", 8, 3);
-    Interval i6("F", 9, 4);
-    Interval i7("G", 10, 4);
-    Interval i8("H", 13, 3);
-    Interval i9("I", 14, 2);
+    /*Greedy::Greedy gdy;
+    int n = 999;
+    Interval* list1 = createInput("input1.txt", &n);
+    gdy.find_maxSubset(list1, n);
 
-    Interval* list = new Interval[9];
-    list[0] = i1;
-    list[1] = i2;
-    list[2] = i3;
-    list[3] = i4;
-    list[4] = i5;
-    list[5] = i6;
-    list[6] = i7;
-    list[7] = i8;
-    list[8] = i9;
+    Interval* list = createInput("input0.txt", &n);
+    gdy.find_minRoomReq(list,n);
 
-    gdy.find_maxSubset(list, 9);
-
-    delete[] list;
+    delete[] list1;
+    delete[] list;*/
 
     return 0;
 }
