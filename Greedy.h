@@ -9,6 +9,7 @@
 #define MODE_FINISHING_TIME 1
 
 #include <iostream>
+#include <vector>
 
 struct Interval {
 private:

@@ -30,6 +30,9 @@ namespace Greedy {
     }
 
     void Greedy::find_maxSubset(Interval *list, int size) {
+        if (size == 0)
+            return;
+
         // Sort list by earliest-finishing-time
         merge_sort(list, size, 1);
         int numIntervals = 0;
@@ -51,7 +54,56 @@ namespace Greedy {
     }
 
     void Greedy::find_minRoomReq(Interval *list, int size) {
+        if (size == 0)
+            return;
 
+        // Sort list by earliest-starting-time
+        merge_sort(list, size, 0);
+        /*for (int i=0;i<size;++i) {
+            std::cout << list[i].getName() << " ";
+        }
+        std::cout << std::endl;*/
+        std::vector<std::vector<Interval*>> roomList;
+        int numRooms = 0;
+        Interval *p;
+        bool isFitted;
+
+        numRooms++;
+        std::vector<Interval*> r1;
+        r1.push_back(&list[0]);
+        roomList.push_back(r1);
+        for (int i=1;i<size;++i) {
+            isFitted = false;
+            p = &list[i];
+            for (auto &it : roomList) {
+                if (!it.empty()) {
+                    if (it.back()->isCompatible(p)) {
+                        isFitted = true;
+                        it.push_back(p);
+                        break;
+                    }
+                }
+            }
+
+            if (!isFitted) {
+                std::vector<Interval*> new_room;
+                new_room.push_back(p);
+                roomList.push_back(new_room);
+                numRooms++;
+            }
+        }
+
+        std::cout << "The number of rooms required to handle all jobs is: " << numRooms << std::endl;
+
+        int number = 1;
+        for (auto &it : roomList) {
+            std::cout << "Room " << number << ": ";
+            for (auto &it1 : it) {
+                std::cout << it1->getName() << " ";
+            }
+            ++number;
+            std::cout << std::endl;
+        }
     }
 
     void Greedy::mergeSortUtil(Interval *list, int begin, int end, int MODE) {
@@ -81,9 +133,11 @@ namespace Greedy {
 
         while (indexLeft < left_size && indexRight < right_size) {
             if (compare(&leftList[indexLeft], &rightList[indexRight], MODE)) {
+                // std::cout << leftList[indexLeft].getName() << " is earlier than " << rightList[indexRight].getName() << std::endl;
                 list[indexMerged] = leftList[indexLeft];
                 indexLeft++;
             } else {
+                // std::cout << rightList[indexRight].getName() << " is earlier than " << leftList[indexLeft].getName() << std::endl;
                 list[indexMerged] = rightList[indexRight];
                 indexRight++;
             }
