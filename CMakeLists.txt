@@ -4,13 +4,13 @@ project(3105_algorithms)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(3105_algorithms main.cpp
-        stableMatching.cpp
-        stableMatching.h
-        Graph.cpp
-        Graph.h
-        DirectedGraph.cpp
-        DirectedGraph.h
-        Greedy.cpp
-        Greedy.h
+        StableMatching/stableMatching.cpp
+        StableMatching/stableMatching.h
+        Graph/Graph.cpp
+        Graph/Graph.h
+        DirectedGraph/DirectedGraph.cpp
+        DirectedGraph/DirectedGraph.h
+        Greedy/Greedy.cpp
+        Greedy/Greedy.h
         WeightedGraph.cpp
         WeightedGraph.h)
