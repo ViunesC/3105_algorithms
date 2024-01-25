@@ -1,8 +1,9 @@
 #include <iostream>
-#include "stableMatching.h"
-#include "Graph.h"
-#include "DirectedGraph.h"
-#include "Greedy.h"
+#include "StableMatching/stableMatching.h"
+#include "Graph/Graph.h"
+#include "DirectedGraph/DirectedGraph.h"
+#include "Greedy/Greedy.h"
+#include "WeightedGraph.h"
 #include <fstream>
 
 
@@ -154,6 +155,7 @@ int main() {
     g2.connectivity();
     //g2.topoSort();*/
 
+    // Greedy: interval algorithms
     /*Greedy::Greedy gdy;
     int n = 999;
     Interval* list1 = createInput("input1.txt", &n);
@@ -164,6 +166,7 @@ int main() {
 
     delete[] list1;
     delete[] list;*/
+
 
     return 0;
 }
