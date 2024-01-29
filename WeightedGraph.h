@@ -8,6 +8,9 @@
 #include <iostream>
 #include <set>
 #include <vector>
+#include <queue>
+
+#define INF_DIST 0x3f3f3f3f
 
 namespace WeightedGraph {
     struct Edge {
@@ -34,6 +37,7 @@ namespace WeightedGraph {
         void removeEdge(int v);
     };
 
+    typedef std::pair<int, Vertex*> myPair;
 
     class WeightedGraph {
     private:

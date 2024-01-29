@@ -124,7 +124,47 @@ namespace WeightedGraph {
     }
 
     void WeightedGraph::shortest_path(int u) {
-        //TODO: Complete shortest-path-algorithm
+        // TODO: Debug
+        std::priority_queue<myPair, std::vector<myPair>, std::greater<myPair>> pq;
+        std::vector<int> dist(this->getN(), INF_DIST);
+
+        int src = find(u);
+        if (src == -1)
+            return;
+        pq.push(std::make_pair(0, &adjacencyList[src]));
+        dist[src] = 0;
+
+        while (!pq.empty()) {
+            // The first vertex in pair is the minimum distance
+            // vertex, extract it from priority queue.
+            // vertex label is stored in second of pair (it
+            // has to be done this way to keep the vertices
+            // sorted distance (distance must be first item
+            // in pair)
+            Vertex* p = pq.top().second;
+            pq.pop();
+
+            // 'i' is used to get all adjacent vertices of a
+            // vertex
+            for (Edge it : *p->getEdges()) {
+                // Get vertex label and weight of current
+                // adjacent of u.
+                int v = find(it.getVertexConnected());
+                int weight = it.getWeight();
+
+                // If there is shorted path to v through u.
+                if (dist[v] > dist[src] + weight) {
+                    // Updating distance of v
+                    dist[v] = dist[src] + weight;
+                    pq.push(std::make_pair(dist[v], &adjacencyList[v]));
+                }
+            }
+        }
+
+        // Print shortest distances stored in dist[]
+        printf("Vertex Distance from Source\n");
+        for (int i = 0; i < getN(); ++i)
+            printf("%d \t\t %d\n", adjacencyList[i].getValue(), dist[i]);
     }
 
     void WeightedGraph::shortest_path(int u, int v) {
