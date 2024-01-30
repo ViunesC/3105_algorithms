@@ -12,5 +12,5 @@ add_executable(3105_algorithms main.cpp
         DirectedGraph/DirectedGraph.h
         Greedy/Greedy.cpp
         Greedy/Greedy.h
-        WeightedGraph.cpp
-        WeightedGraph.h)
+        WeightedGraph/WeightedGraph.cpp
+        WeightedGraph/WeightedGraph.h)

@@ -3,7 +3,7 @@
 #include "Graph/Graph.h"
 #include "DirectedGraph/DirectedGraph.h"
 #include "Greedy/Greedy.h"
-#include "WeightedGraph.h"
+#include "WeightedGraph/WeightedGraph.h"
 #include <fstream>
 
 
@@ -210,8 +210,9 @@ int main() {
     delete[] list1;
     delete[] list;*/
 
-    WeightedGraph::WeightedGraph wg = createInput("input2.txt");
-    wg.shortest_path(0);
+    // Greedy: shortest-path-problem (dijkstra's algorithm)
+    /*WeightedGraph::WeightedGraph wg = createInput("input2.txt");
+    wg.shortest_path(0);*/
 
 
 
