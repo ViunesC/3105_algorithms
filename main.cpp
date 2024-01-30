@@ -40,6 +40,49 @@ Interval* createInput(std::string fileName, int* number) {
     return nlist;
 }
 
+WeightedGraph::WeightedGraph createInput(std::string fileName) {
+    std::ifstream file(fileName);
+    std::string line;
+    std::string v, weight;
+    char u;
+    WeightedGraph::WeightedGraph wg;
+
+    // read N
+    while (std::getline(file,line)) {
+        wg.addVertex(line[0] - '0');
+        // std::cout << "Adding vertex" << line[0] << std::endl;
+    }
+    file.close();
+    std::ifstream file1(fileName);
+    line.clear();
+
+    while (std::getline(file1,line)) {
+        u = line[0];
+        for (auto it = line.begin();it != line.end();++it) {
+            if (*it == '(') {
+                ++it;
+                while (*it != ',') {
+                    v.push_back(*it);
+                    ++it;
+                }
+                ++it;
+                while (*it != ')') {
+                    weight.push_back(*it);
+                    ++it;
+                }
+                // std::cout << "Adding edge (" << u << "," + v + "," + weight << ")" << std::endl;
+                wg.addEdge(u - '0', std::stoi(v), std::stoi(weight));
+                v.clear();
+                weight.clear();
+            }
+        }
+    }
+
+    file1.close();
+
+    return wg;
+}
+
 int main() {
     // Gale-shapley algorithm
     /*int N = 3;
@@ -166,6 +209,10 @@ int main() {
 
     delete[] list1;
     delete[] list;*/
+
+    WeightedGraph::WeightedGraph wg = createInput("input2.txt");
+    wg.shortest_path(0);
+
 
 
     return 0;
