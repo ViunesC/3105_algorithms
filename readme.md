@@ -9,4 +9,6 @@ For every algorithm, there is a piece of code for testing. I've comment-out all 
 1. Stable Matching - Gale shapley algorithm
 2. Graph - breadth-first-search (BFS) and depth-first-search (DFS), test bipartiteness
 3. Directed Graph - test connectivity and find topological order of graph
-4. Greedy strategies - Interval scheduling, Interval partitioning and Shortest-path-problem
+4. Greedy strategy - Interval scheduling, Interval partitioning and Shortest-path-problem  
+5. More on Greedy strategy - Minimum spanning tree (MST) problem: two ways (Prim's and Kruskal)  
+6. Divide-and-Conquer strategy - Mergesort, Counting Inversions, Integer multiplication and matrix multiplication
