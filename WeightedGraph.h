@@ -52,7 +52,6 @@ namespace WeightedGraph {
         void removeEdge(int u, int v);
         size_t getN();
         void shortest_path(int u);
-        void shortest_path(int u, int v);
         void printAll();
     };
 } // WeightedGraph
