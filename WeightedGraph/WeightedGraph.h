@@ -31,6 +31,7 @@ namespace WeightedGraph {
         Vertex(int value);
         int getValue();
         size_t getNumConnected();
+        Edge* getEdge(int v);
         std::vector<Edge>* getEdges();
         bool isConnected(int v);
         void addEdge(int v, int weight);
@@ -50,6 +51,7 @@ namespace WeightedGraph {
         void removeVertex(int value);
         void addEdge(int u, int v, int weight);
         void removeEdge(int u, int v);
+        Edge* getEdge(int u, int v);
         size_t getN();
         void shortest_path(int u);
         void primMST(int u);

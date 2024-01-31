@@ -57,6 +57,16 @@ namespace WeightedGraph {
         std::cout << "Cannot remove the edge" << std::endl;
     }
 
+    Edge* Vertex::getEdge(int v) {
+        for (auto &it : edgeList) {
+            if (it.getVertexConnected() == v)
+                return &it;
+        }
+
+        std::cout << "Cannot find edge to " << v << std::endl;
+        return nullptr;
+    }
+
     WeightedGraph::WeightedGraph() = default;
 
     void WeightedGraph::addVertex(int value) {
@@ -191,55 +201,77 @@ namespace WeightedGraph {
     }
 
     void WeightedGraph::primMST(int u) {
-        std::set<int> explored;
-        std::vector<Edge*> mst;
+        // TODO: Find a better way to display result
+        std::vector<int> explored;
+        std::vector<int> mst;
 
         std::priority_queue<myPair, std::vector<myPair>, std::greater<myPair>> pq;
 
-        int src = find(u);
+        int src = find(u);   // O(n)
         if (src == -1)
             return;
         pq.push(std::make_pair(0, &adjacencyList[src]));
-        int v, t;
-        int minWeight = INF_DIST;
+        int p_val, tree_len = 0, edge;
+        bool isExplored;
         Vertex* p;
 
-        while (explored.size() != getN()) {
+
+        while (explored.size() != getN()) {   // O(n)
+            if (pq.empty())
+                break;
+
+            edge = pq.top().first;
             p = pq.top().second;
-            pq.pop();
+            pq.pop();   // O(nlogn)
+            p_val = p->getValue();
 
-            if (explored.count(p->getValue()) == 0) {
-                explored.insert(p->getValue());
-                // TODO: Complete
-            }
-
-            for (Edge it : *p->getEdges()) {
-                pq.push(std::make_pair(it.getWeight(), &adjacencyList[find(it.getVertexConnected())]));
-            }
-
-        }
-
-        while (!pq.empty()) {
-            p = pq.top().second;
-            pq.pop();
-            t = find(p->getValue());
-
-            // 'i' is used to get all adjacent vertices of a
-            // vertex
-            for (Edge it : *p->getEdges()) {
-                // Get vertex label and weight of current
-                // adjacent of u.
-                if (it.getWeight() < minWeight) {
-                    v = find(it.getVertexConnected());
-                    minWeight = it.getWeight();
+            isExplored = false;
+            for (int x : explored) {   // O(n)
+                if (x == p_val) {
+                    isExplored = true;
+                    break;
                 }
             }
 
-            pq.push(std::make_pair())
+            if (!isExplored) {
+                // std::cout << "Explore " << p_val << std::endl;
+                explored.push_back(p_val);
+                tree_len += edge;
+                if (p_val != u) {
+                    mst.push_back(edge);
+                }
+
+                // Push all of its adjacent edge(vertice) into PQ
+                for (Edge it : *p->getEdges()) {   // O(|E(n)|)
+                    pq.push(std::make_pair(it.getWeight(), &adjacencyList[find(it.getVertexConnected())]));  // O(nlogn)
+                }
+            }
         }
 
-        printf("Vertex Distance from Source\n");
-        for (int i = 0; i < getN(); ++i)
-            printf("%d \t\t %d\n", adjacencyList[i].getValue(), dist[i]);
+        while (!pq.empty())   // O(nlogn)
+            pq.pop();
+
+        std::cout << "Total length of Spanning tree is " << tree_len << std::endl;
+        std::string str;
+        for (int v : explored) {
+            str += std::to_string(v) + "->";
+        }
+        str.erase(str.size()-2, 2);
+
+        std::cout << str << std::endl;
+
+        if (explored.size() < getN()) {
+            std::cout << "Graph is disconnected. Output MST is not complete." << std::endl;
+        }
+    }
+
+    Edge* WeightedGraph::getEdge(int u, int v) {
+        int u_pos = find(u);
+        if (u_pos == -1) {
+            std::cout << "Cannot find vertex " << u << std::endl;
+            return nullptr;
+        }
+
+        return adjacencyList[u_pos].getEdge(v);
     }
 } // WeightedGraph
