@@ -189,4 +189,57 @@ namespace WeightedGraph {
             std::cout << std::endl;
         }
     }
+
+    void WeightedGraph::primMST(int u) {
+        std::set<int> explored;
+        std::vector<Edge*> mst;
+
+        std::priority_queue<myPair, std::vector<myPair>, std::greater<myPair>> pq;
+
+        int src = find(u);
+        if (src == -1)
+            return;
+        pq.push(std::make_pair(0, &adjacencyList[src]));
+        int v, t;
+        int minWeight = INF_DIST;
+        Vertex* p;
+
+        while (explored.size() != getN()) {
+            p = pq.top().second;
+            pq.pop();
+
+            if (explored.count(p->getValue()) == 0) {
+                explored.insert(p->getValue());
+                // TODO: Complete
+            }
+
+            for (Edge it : *p->getEdges()) {
+                pq.push(std::make_pair(it.getWeight(), &adjacencyList[find(it.getVertexConnected())]));
+            }
+
+        }
+
+        while (!pq.empty()) {
+            p = pq.top().second;
+            pq.pop();
+            t = find(p->getValue());
+
+            // 'i' is used to get all adjacent vertices of a
+            // vertex
+            for (Edge it : *p->getEdges()) {
+                // Get vertex label and weight of current
+                // adjacent of u.
+                if (it.getWeight() < minWeight) {
+                    v = find(it.getVertexConnected());
+                    minWeight = it.getWeight();
+                }
+            }
+
+            pq.push(std::make_pair())
+        }
+
+        printf("Vertex Distance from Source\n");
+        for (int i = 0; i < getN(); ++i)
+            printf("%d \t\t %d\n", adjacencyList[i].getValue(), dist[i]);
+    }
 } // WeightedGraph
