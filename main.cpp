@@ -214,6 +214,10 @@ int main() {
     /*WeightedGraph::WeightedGraph wg = createInput("input2.txt");
     wg.shortest_path(0);*/
 
+    WeightedGraph::WeightedGraph wg1 = createInput("input3.txt");
+    //wg1.printAll();
+    wg1.primMST(1);
+
 
 
     return 0;
