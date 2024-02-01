@@ -18,9 +18,11 @@ namespace WeightedGraph {
         int weight;
         int toVertex;
     public:
+        Edge() = default;
         Edge(int v, int weight);
         int getWeight();
         int getVertexConnected();
+        bool operator<(Edge const& other);
     };
 
     struct Vertex {

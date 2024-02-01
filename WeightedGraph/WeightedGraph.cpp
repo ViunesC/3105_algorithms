@@ -19,6 +19,10 @@ namespace WeightedGraph {
         this->weight = weight;
     }
 
+    bool Edge::operator<(Edge const& other){
+        return this->weight < other.weight;
+    }
+
     int Vertex::getValue() {
         return value;
     }
