@@ -269,6 +269,10 @@ namespace WeightedGraph {
         }
     }
 
+    void WeightedGraph::kruskalMST() {
+
+    }
+
     Edge* WeightedGraph::getEdge(int u, int v) {
         int u_pos = find(u);
         if (u_pos == -1) {

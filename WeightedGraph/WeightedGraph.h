@@ -57,6 +57,7 @@ namespace WeightedGraph {
         size_t getN();
         void shortest_path(int u);
         void primMST(int u);
+        void kruskalMST();
         void printAll();
     };
 } // WeightedGraph
