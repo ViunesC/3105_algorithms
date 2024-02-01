@@ -4,6 +4,7 @@
 #include "DirectedGraph/DirectedGraph.h"
 #include "Greedy/Greedy.h"
 #include "WeightedGraph/WeightedGraph.h"
+#include "Utility/MergeSort.h"
 #include <fstream>
 
 
@@ -214,10 +215,32 @@ int main() {
     /*WeightedGraph::WeightedGraph wg = createInput("input2.txt");
     wg.shortest_path(0);*/
 
-    WeightedGraph::WeightedGraph wg1 = createInput("input3.txt");
+    //WeightedGraph::WeightedGraph wg1 = createInput("input3.txt");
     //wg1.printAll();
-    wg1.primMST(1);
+    //wg1.primMST(1);
+    WeightedGraph::Edge e1(1,3);
+    WeightedGraph::Edge e2(1,5);
+    WeightedGraph::Edge e3(1,7);
+    WeightedGraph::Edge e4(1,9);
+    WeightedGraph::Edge e5(1,11);
+    WeightedGraph::Edge e6(1,39);
 
+    int N = 6;
+    auto *edgelist = new WeightedGraph::Edge[N];
+    edgelist[0] = e2;
+    edgelist[1] = e1;
+    edgelist[2] = e5;
+    edgelist[3] = e3;
+    edgelist[4] = e6;
+    edgelist[5] = e4;
+
+    MergeSort<WeightedGraph::Edge>::merge_sort(edgelist, N);
+
+    for (int i=0;i<N;++i) {
+        std::cout << edgelist[i].getWeight() << std::endl;
+    }
+
+    delete[] edgelist;
 
 
     return 0;
