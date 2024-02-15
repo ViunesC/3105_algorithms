@@ -270,7 +270,7 @@ namespace WeightedGraph {
     }
 
     void WeightedGraph::kruskalMST() {
-
+        // TODO: to be completed
     }
 
     Edge* WeightedGraph::getEdge(int u, int v) {
